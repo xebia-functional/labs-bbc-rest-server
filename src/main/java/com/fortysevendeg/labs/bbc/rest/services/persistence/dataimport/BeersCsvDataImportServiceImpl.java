@@ -40,12 +40,13 @@ public class BeersCsvDataImportServiceImpl implements DataImportService, Applica
                 String[] beer;
                 while ((beer = reader.readNext()) != null) {
                     try {
-                    long id = Long.parseLong(beer[0]);
-                    String name = beer[2];
-                    String upc = beer[8];
-                    Beer persistentBeer = new Beer(id, name, upc);
-                    persistenceService.create(persistentBeer);
-                    logger.debug(String.format("imported: %s, %s, %s", id, name, upc));
+                        Beer persistentBeer = new Beer();
+                        persistentBeer.setId(Long.parseLong(beer[0]));
+                        persistentBeer.setName(beer[2]);
+                        persistentBeer.setDescription(beer[10]);
+                        persistentBeer.setAvb(Double.parseDouble(beer[5]));
+                        persistenceService.create(persistentBeer);
+                        logger.debug(String.format("imported: %s", persistentBeer.getName()));
                     } catch (Throwable t) {
                         logger.error("error importing beers", t.getMessage());
                     }

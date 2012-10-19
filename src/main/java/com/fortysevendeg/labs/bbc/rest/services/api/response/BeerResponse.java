@@ -49,7 +49,15 @@ public class BeerResponse {
      *
      * @return the beer last name
      */
-    public String getUpc() {
-        return delegate.getUpc();
+    public String getDescription() {
+        return delegate.getDescription();
+    }
+
+    /**
+     *
+     * @return the alcohol volume
+     */
+    public double getAvb() {
+        return delegate.getAvb();
     }
 }

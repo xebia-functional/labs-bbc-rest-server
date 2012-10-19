@@ -13,20 +13,9 @@ public class Beer implements PersistentObject {
     private String name;
 
     @Column
-    private String upc;
+    private String description;
 
-    public Beer() {
-    }
-
-    public Beer(Long id, String name, String upc) {
-        this(name, upc);
-        this.id = id;
-    }
-
-    public Beer(String name, String upc) {
-        this.name = name;
-        this.upc = upc;
-    }
+    private double avb;
 
     public Long getId() {
         return id;
@@ -44,11 +33,19 @@ public class Beer implements PersistentObject {
         this.name = firstName;
     }
 
-    public String getUpc() {
-        return upc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUpc(String lastName) {
-        this.upc = lastName;
+    public void setDescription(String lastName) {
+        this.description = lastName;
+    }
+
+    public double getAvb() {
+        return avb;
+    }
+
+    public void setAvb(double avb) {
+        this.avb = avb;
     }
 }

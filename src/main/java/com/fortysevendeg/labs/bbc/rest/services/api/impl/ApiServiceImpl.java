@@ -59,7 +59,7 @@ public class ApiServiceImpl implements ApiService {
     public BeerResponse update(@PathVariable("id") Long id, @RequestBody BeerRequest beerRequest) {
         Beer beer = persistenceService.read(Beer.class, id);
         beer.setName(beerRequest.getFirstName());
-        beer.setUpc(beerRequest.getLastName());
+        beer.setDescription(beerRequest.getLastName());
         beer = persistenceService.update(beer);
         return BeerResponse.createBeerResponse(beer);
     }
