@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.FileReader;
 
@@ -45,6 +46,9 @@ public class BeersCsvDataImportServiceImpl implements DataImportService, Applica
                         persistentBeer.setName(beer[2]);
                         persistentBeer.setDescription(beer[10]);
                         persistentBeer.setAvb(Double.parseDouble(beer[5]));
+                        if (!StringUtils.hasText(persistentBeer.getDescription())) {
+                            continue;
+                        }
                         persistenceService.create(persistentBeer);
                         logger.debug(String.format("imported: %s", persistentBeer.getName()));
                     } catch (Throwable t) {

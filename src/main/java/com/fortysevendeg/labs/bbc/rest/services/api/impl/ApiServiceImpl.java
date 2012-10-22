@@ -30,10 +30,10 @@ public class ApiServiceImpl implements ApiService {
     @RequestMapping(value = "/beers", method = RequestMethod.PUT)
     @ResponseBody
     @Transactional
-    public BeerResponse create() {
+    public BeerResponse create(@RequestBody BeerRequest beerRequest) {
         Beer beer = new Beer();
         beer = persistenceService.create(beer);
-        return BeerResponse.createBeerResponse(beer);
+        return update(beer.getId(), beerRequest);
     }
 
     @Override
@@ -60,6 +60,7 @@ public class ApiServiceImpl implements ApiService {
         Beer beer = persistenceService.read(Beer.class, id);
         beer.setName(beerRequest.getName());
         beer.setDescription(beerRequest.getDescription());
+        beer.setAvb(beerRequest.getAvb());
         beer = persistenceService.update(beer);
         return BeerResponse.createBeerResponse(beer);
     }
