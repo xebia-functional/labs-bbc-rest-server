@@ -11,18 +11,21 @@ public interface ApiService {
 
     /**
      * Lists all
+     *
      * @return a list of all objects
      */
     BeerResponseList list();
 
     /**
      * Creates a beer
+     * @param beerRequest a beer request
      * @return the beer api representation response
      */
-    BeerResponse create();
+    BeerResponse create(BeerRequest beerRequest);
 
     /**
      * Gets a beer
+     *
      * @param id a beer id
      * @return the beer api representation response
      */
@@ -30,13 +33,16 @@ public interface ApiService {
 
     /**
      * Updates a beer
-     * @param id a beer id
+     *
+     * @param id          a beer id
+     * @param beerRequest a beer request
      * @return the beer api representation response
      */
     BeerResponse update(Long id, BeerRequest beerRequest);
 
     /**
      * Deletes a beer
+     *
      * @param id a beer id
      * @return the beer api representation response
      */
